@@ -1,5 +1,15 @@
 <?php
+
+session_start();
+// kalo session login belum ada
+if(!isset($_SESSION['login'])) {
+    //alihkan ke halaman login
+    header("Location: pages/login.php");
+}
+
 include 'pages/header/config.php';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +18,7 @@ include 'pages/header/config.php';
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - QuickStart Bootstrap Template</title>
+  <title>voting osis</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -55,7 +65,9 @@ include 'pages/header/config.php';
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="index.html#about"> <?= $_SESSION['nama']; ?></a>
+
+      <a href="pages/logout.php" class="btn btn-danger" style="font-size: 14; padding: 8PX 25PX; margin: 0 0 0 10px; border-radius: 50px; transition: all 0.3s ease;" >Logout</a>
 
     </div>
   </header>

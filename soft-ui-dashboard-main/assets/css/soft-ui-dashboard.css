@@ -3769,8 +3769,8 @@ textarea.form-control.is-invalid {
   --bs-btn-font-size: 0.75rem;
   --bs-btn-font-weight: 700;
   --bs-btn-line-height: 1.4;
-  --bs-btn-color: var(--bs-body-color);
-  --bs-btn-bg: transparent;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #0000ff;
   --bs-btn-border-width: 1px;
   --bs-btn-border-color: transparent;
   --bs-btn-border-radius: 0.5rem;
@@ -3784,7 +3784,7 @@ textarea.form-control.is-invalid {
   font-size: var(--bs-btn-font-size);
   font-weight: var(--bs-btn-font-weight);
   line-height: var(--bs-btn-line-height);
-  color: var(--bs-btn-color);
+  color: #ffffff;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
@@ -3861,10 +3861,10 @@ fieldset:disabled .btn {
 
 .btn-primary {
   --bs-btn-color: #000;
-  --bs-btn-bg: #f97316;
+  --bs-btn-bg: #1634f9;
   --bs-btn-border-color: #f97316;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: rgb(249.9, 136, 56.95);
+  --bs-btn-hover-bg: rgb(245, 245, 245);
   --bs-btn-hover-border-color: rgb(249.6, 129, 45.3);
   --bs-btn-focus-shadow-rgb: 212, 98, 19;
   --bs-btn-active-color: #000;
@@ -3873,7 +3873,7 @@ fieldset:disabled .btn {
   --bs-btn-active-shadow: none;
   --bs-btn-disabled-color: #000;
   --bs-btn-disabled-bg: #f97316;
-  --bs-btn-disabled-border-color: #f97316;
+  --bs-btn-disabled-border-color: #1643f9;
 }
 
 .btn-secondary {
@@ -5436,7 +5436,7 @@ fieldset:disabled .btn {
 .card-body {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-  color: var(--bs-card-color);
+  color: #0000FF;
 }
 
 .card-title {
@@ -24616,7 +24616,7 @@ html {
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active .icon {
-  background-image: linear-gradient(310deg, #f97316 0%, #f97316 100%);
+  background-image: linear-gradient(310deg, #0000FF 0%, #0000FF 100%);
   color: #fff;
 }
 
