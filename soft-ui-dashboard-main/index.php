@@ -169,6 +169,8 @@ include 'pages/header/config.php';
       //aktifkan tombol pilih
       document.getElementById("btnpilih").disabled = false;
 
+      
+
       //ambil semua elemen dengan class calon-card
       let semua_card = document.querySelectorAll(".calon-card");
 
