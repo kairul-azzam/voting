@@ -5436,7 +5436,7 @@ fieldset:disabled .btn {
 .card-body {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-  color: #0000FF;
+  
 }
 
 .card-title {
@@ -11289,8 +11289,8 @@ fieldset:disabled .btn {
   --bs-link-underline-opacity: 1;
 }
 
-.bg-primary {
-  background-color: #f97316 !important;
+.kartu1 mask {
+  background-color: white;
 }
 
 .bg-secondary {

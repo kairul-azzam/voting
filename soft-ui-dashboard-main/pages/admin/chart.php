@@ -13,37 +13,55 @@ foreach ($query as $data) {
 }
 ?>
 
-<h1 align="center">grafik </h1>
-<h5 align="center">Hasil Voting</h5>
 
-<div>
-  <canvas id="myChart" height="100"></canvas>
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h1 align="center">grafik </h1>
+                    <h5 align="center">Hasil Voting</h5>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <div>
+                                <canvas id="myChart" height="100"></canvas>
+                            </div>
+
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                            <script>
+                                const nama = <?= json_encode($nama_calon) ?>;
+                                const jumlah = <?= json_encode($jumlah) ?>;
+
+                                const ctx = document.getElementById('myChart');
+
+                                new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: nama,
+                                        datasets: [{
+                                            label: '# of Votes',
+                                            data: jumlah,
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    const nama = <?= json_encode($nama_calon) ?>;
-    const jumlah = <?= json_encode($jumlah) ?>;
-
-    const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: nama,
-      datasets: [{
-        label: '# of Votes',
-        data: jumlah,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-</script>

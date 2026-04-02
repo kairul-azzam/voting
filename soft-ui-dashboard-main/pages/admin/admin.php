@@ -76,7 +76,7 @@ $halaman = basename($_SERVER['PHP_SELF']);
                         <span class="text-secondary text-xs font-weight-bold"><?= $data['Alamat'] ?></span>
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" onclick="window.location.href='editadmin.php?id=<?= $data['id_admin'] ?>'">
                           Edit
                         </a>
                       </td>
