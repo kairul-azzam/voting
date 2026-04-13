@@ -38,7 +38,7 @@ $halaman = basename($_SERVER['PHP_SELF']);
           <a href="../../../admin.csv" class="btn btn-warning mb-3 download">
             download template excel
           </a>
-          <a href="deleteall.php?confirm=yes" onclick="return confirm('Apakah Anda yakin ingin menghapus semua data admin?')" class="btn btn-danger mb-3" style="margin-left: auto;">
+          <a href="#" id="btn-delete-all" data-href="deleteall.php?confirm=yes" class="btn btn-danger mb-3" style="margin-left: auto;">
             delete all
           </a>
         </div>
@@ -110,38 +110,7 @@ $halaman = basename($_SERVER['PHP_SELF']);
       </div>
     </div>
   </div>
-  <footer class="footer pt-3  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            © <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  
 </div>
 </main>
 <div class="fixed-plugin">
@@ -258,6 +227,33 @@ $halaman = basename($_SERVER['PHP_SELF']);
       }
     });
   }
+</script>
+<!-- SweetAlert2 for delete-all confirmation -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('btn-delete-all');
+    if (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var href = btn.getAttribute('data-href');
+        Swal.fire({
+          title: 'Apakah Anda Yakin?',
+          text: "Semua data admin akan dihapus dan tidak dapat dikembalikan!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Hapus Semua',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = href;
+          }
+        });
+      });
+    }
+  });
 </script>
 
 </body>

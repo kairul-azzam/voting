@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="../assets_login/stylelogin.css">
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc7BzfAOGrygvQ8AwkEkcarwJVRQ9YO01FZg&s">
+  <title>
+    login admin
+  </title>
 </head>
 <body>
   <div class="wrapper">

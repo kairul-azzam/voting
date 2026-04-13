@@ -48,11 +48,17 @@ if (isset($_FILES['file_excel']['tmp_name'])) {
 
     fclose($file);
 
+    // gunakan SweetAlert2 untuk notifikasi yang lebih baik
+    echo "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script></head><body>\n";
+    echo "<script>Swal.fire({icon: 'success', title: 'Import berhasil', text: 'Data siswa berhasil diimport.', showConfirmButton: false, timer: 1800}).then(function(){ window.location = 'siswa.php'; });</script>";
+    echo "</body></html>";
+}
 
-    echo "<script>
-        alert('Import berhasil!');
-        window.location='siswa.php';
-    </script>";
+// jika tidak ada file terupload atau terjadi error, beri notifikasi
+if (!isset($_FILES['file_excel']['tmp_name']) || empty($_FILES['file_excel']['tmp_name'])) {
+    echo "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script></head><body>\n";
+    echo "<script>Swal.fire({icon: 'error', title: 'Gagal', text: 'Tidak ada file yang diunggah.', confirmButtonText: 'OK'}).then(function(){ window.location = 'importsiswa.php'; });</script>";
+    echo "</body></html>";
 }
 
 

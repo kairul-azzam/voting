@@ -5,19 +5,21 @@ include "../header/config.php";
 $id = $_GET['id'] ?? null;
 
 // ambil data id
-if($id){
+if ($id) {
     $query = mysqli_query($koneksi, "SELECT * FROM tblcalonketos WHERE id_calon = $id");
     // mysqli_fetch_assoc = ngambil satu baris dari query, terus di simpan di var siswa
     $siswa = mysqli_fetch_assoc($query);
 }
+
+$berhasil = false;
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $NamaCalonVar = $_POST['nama_calon'] ?? 0;
     $visiVar = $_POST['visi'] ?? 0;
     $misiVar = $_POST['misi'] ?? 0;
     $fotoVar = $_POST['foto'] ?? 0;
-    
-    
+
+
 
 
     //cek upload foto baru
@@ -30,11 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         move_uploaded_file($tmpFile, $folder . $foto);
 
         //ipdate + foto baru
-        $sql = "UPDATE tblcalonketos SET nama='$NamaCalonVar', visi='$visiVar', misi='$misiVar', foto='$foto' WHERE id_calon = $id";
-
-    }else {
+        $sql = "UPDATE tblcalonketos SET nama_calon='$NamaCalonVar', visi='$visiVar', misi='$misiVar', foto='$foto' WHERE id_calon = $id";
+    } else {
         //update tanpa foto baru
-        $sql = "UPDATE tblsiswa SET nama='$NamaCalonVar', visi='$visiVar', misi='$misiVar' WHERE id_siswa = $id";
+        $sql = "UPDATE tblcalonketos SET nama_calon='$NamaCalonVar', visi='$visiVar', misi='$misiVar' WHERE id_calon = $id";
     }
 
     $query = mysqli_query($koneksi, $sql);
@@ -42,8 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($query) {
         $berhasil = true;
     }
-
-    
 }
 include "../header/sidebar.php";
 
@@ -62,8 +61,8 @@ $halaman = basename($_SERVER['PHP_SELF']);
                 <div class="card-body px-0 pt-0 pb-2">
                     <form class="px-4" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Nama Calon</label>
-                            <input type="text " class="form-control" name="nama_calon" value="<?php echo $calon['nama_calon']; ?>" required>
+                            <label for="nama_calon" class="form-control-label">Nama Calon</label>
+                            <input type="text " class="form-control" name="nama_calon" value="<?php echo $siswa['nama_calon']; ?>" required>
                         </div>
                         <!-- <div class="form-group">
                             <label for="" class="form-control-label">Kelas</label>
@@ -71,16 +70,16 @@ $halaman = basename($_SERVER['PHP_SELF']);
                         </div> -->
                         <div class="form-group">
                             <label for="" class="form-control-label">Visi Calon</label>
-                            <input type="text" class="form-control" name="visi" value="<?php echo $calon['visi']; ?>" required>
+                            <input type="text" class="form-control" name="visi" value="<?php echo $siswa['visi']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="form-control-label">Misi Calon</label>
-                            <input type="text" class="form-control" name="misi" value="<?php echo $calon['misi']; ?>" required>
+                            <input type="text" class="form-control" name="misi" value="<?php echo $siswa['misi']; ?>" required>
                         </div>
 
                         <div class="form-group">
                             <label for="" class="form-control-label">Foto Ketos</label>
-                            <img src="../../assets/foto_calon/<?php echo $calon['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
+                            <img src="../../assets/foto_calon/<?php echo $siswa['foto']; ?>" class="avatar avatar-sm me-3" alt="user1">
                             <input type="file" class="form-control" name="foto" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary"><a href="../pages/tambahcalonketos.php"></a>Submit</button>
@@ -91,7 +90,7 @@ $halaman = basename($_SERVER['PHP_SELF']);
     </div>
 </div>
 
-<?php if($success){ ?>
+<?php if ($berhasil) { ?>
     <script>
         Swal.fire({
             title: 'Berhasil!',

@@ -19,10 +19,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['nama_admin'] = $dataSiswa['nama_admin'];
         $_SESSION['id_admin'] = $dataSiswa['id_admin'];
         //jka benar, alihkan ke halaman dashboard admin
-        echo "<script>alert('Login berhasil'); window.location.href = 'dashboard/dashboard.php';</script>";
+                echo <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Login berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then(() => { window.location.href = 'dashboard/dashboard.php'; });
+</script>
+</body>
+</html>
+HTML;
     } else {
         //jika tidak cocok, tampilkan pesan error
-        echo "<script>alert('Username atau password salah'); window.location.href = 'login_admin.php';</script>";
+                echo <<<HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<script>
+Swal.fire({
+    icon: 'error',
+    title: 'Login gagal',
+    text: 'Username atau password salah',
+    confirmButtonText: 'OK'
+}).then(() => { window.location.href = 'login_admin.php'; });
+</script>
+</body>
+</html>
+HTML;
     }
 }
 

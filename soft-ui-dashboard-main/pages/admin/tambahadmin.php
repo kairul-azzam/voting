@@ -2,6 +2,8 @@
 include "../header/sidebar.php";
 include "../header/config.php";
 
+$berhasil = false;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usernameVar = $_POST['username'] ?? 0;
     $emailVar = $_POST['email'] ?? 0;

@@ -21,9 +21,13 @@ include 'pages/header/config.php';
   <title>voting osis</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  
 
   <!-- Favicons -->
-  <link href="assets_siswa/img/favicon.png" rel="icon">
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc7BzfAOGrygvQ8AwkEkcarwJVRQ9YO01FZg&s">
+  <title>
+    voting ketua osis
+  </title>
   <link href="assets_siswa/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -185,6 +189,40 @@ include 'pages/header/config.php';
       });
     }
   </script>
+
+  <?php if (isset($_SESSION['vote_status'])): ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      (function() {
+        var status = "<?= $_SESSION['vote_status']; ?>";
+        if (status === 'berhasil') {
+          Swal.fire({
+            title: 'Kerja Bagus!',
+            text: 'voting berhasil!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        } else if (status === 'sudah_voting') {
+          Swal.fire({
+            title: 'Maaf!',
+            text: 'Anda sudah melakukan voting!',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        } else {
+          Swal.fire({
+            title: 'Gagal!',
+            text: 'Terjadi kesalahan, silakan coba lagi.',
+            icon: 'error',
+            showConfirmButton: true
+          });
+        }
+      })();
+    </script>
+    <?php unset($_SESSION['vote_status']); ?>
+  <?php endif; ?>
 
 </body>
 

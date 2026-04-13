@@ -11,18 +11,19 @@ if($id){
     $siswa = mysqli_fetch_assoc($query);
 }
 
+$berhasil = false;
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $usernameVar = $_POST['username'] ?? 0;
-    $passwordVar = $_POST['password'] ?? 0;
-    $emailVar = $_POST['email'] ?? 0;
-    $namaadminVar = $_POST['nama_admin'] ?? 0;
-    $alamatVar = $_POST['Alamat'] ?? 0;
+    $usernameVar = mysqli_real_escape_string($koneksi, $_POST['username'] ?? '');
+    $passwordVar = mysqli_real_escape_string($koneksi, $_POST['password'] ?? '');
+    $emailVar = mysqli_real_escape_string($koneksi, $_POST['email'] ?? '');
+    $namaadminVar = mysqli_real_escape_string($koneksi, $_POST['nama_admin'] ?? '');
+    $alamatVar = mysqli_real_escape_string($koneksi, $_POST['alamat'] ?? '');
     
 
-
     //cek upload foto baru
-    if ($_FILES['foto']['name'] != "") {
-        $foto = $_FILES['foto']['name'];
+    if (!empty($_FILES['foto']['name'])) {
+        $foto = basename($_FILES['foto']['name']);
         $tmpFile = $_FILES['foto']['tmp_name'];
 
         //folder upload
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //ipdate + foto baru
         $sql = "UPDATE tbladmin SET username='$usernameVar', password='$passwordVar', email='$emailVar', nama_admin='$namaadminVar', Alamat='$alamatVar', foto='$foto' WHERE id_admin = $id";
 
-    }else {
+    } else {
         //update tanpa foto baru
         $sql = "UPDATE tbladmin SET username='$usernameVar', password='$passwordVar', email='$emailVar', nama_admin='$namaadminVar', Alamat='$alamatVar' WHERE id_admin = $id";
     }
@@ -43,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $berhasil = true;
     }
 
-    
 }
 include "../header/sidebar.php";
 

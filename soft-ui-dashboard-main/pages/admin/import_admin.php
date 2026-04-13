@@ -48,11 +48,17 @@ if (isset($_FILES['file_excel']['tmp_name'])) {
     fclose($file);
 
 
-    echo " <script>
-    
-        alert('Import berhasil!');
-        window.location='admin.php';
-    </script>";
+    // gunakan SweetAlert2 untuk notifikasi yang lebih baik
+    echo "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script></head><body>\n";
+    echo "<script>Swal.fire({icon: 'success', title: 'Import berhasil', text: 'Data admin berhasil diimport.', showConfirmButton: false, timer: 1800}).then(function(){ window.location = 'admin.php'; });</script>";
+    echo "</body></html>";
+}
+
+// jika tidak ada file terupload atau terjadi error, beri notifikasi
+if (!isset($_FILES['file_excel']['tmp_name']) || empty($_FILES['file_excel']['tmp_name'])) {
+    echo "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script></head><body>\n";
+    echo "<script>Swal.fire({icon: 'error', title: 'Gagal', text: 'Tidak ada file yang diunggah.', confirmButtonText: 'OK'}).then(function(){ window.location = 'importadmin.php'; });</script>";
+    echo "</body></html>";
 }
 
 
